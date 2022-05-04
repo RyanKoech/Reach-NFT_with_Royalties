@@ -1,6 +1,10 @@
-import logo from './logo.svg';
-import { useState } from 'react';
-import {loadStdlib} from '@reach-sh/stdlib'
+import { Component, useState } from 'react';
+import {loadStdlib} from '@reach-sh/stdlib';
+
+import Navbar from './components/Navbar';
+import MainApp from './components/MainApp';
+
+import './App.css';
 const reach = loadStdlib('ALGO');
 reach.setProviderByName("LocalHost")
 const startingBalance = reach.parseCurrency(100);
@@ -8,6 +12,7 @@ const startingBalance = reach.parseCurrency(100);
 
 function App() {
   const [accountDetails, setAccountDetails] = useState({})
+
 
   async function connectWallet() {
     console.log("Waiting...")
@@ -27,7 +32,12 @@ function App() {
   }
 
   return (
-    <p class="text-slate-400 hover:text-sky-400">The quick brown fox...</p>
+    <div className='min-h-screen dark-lightblue-gradient'>
+      <div className="container mx-auto w-11/12 pt-5">
+        <Navbar></Navbar>
+        <MainApp></MainApp>
+      </div>
+    </div>
   );
 }
 
