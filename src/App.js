@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import { useState } from 'react';
-import './App.css';
 import {loadStdlib} from '@reach-sh/stdlib'
 const reach = loadStdlib('ALGO');
 reach.setProviderByName("LocalHost")
@@ -28,33 +27,7 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          <button type="button" onClick={connectWallet}>
-            Connect
-          </button>
-        </p>
-        <div>
-          <ul>
-            <li>Account Address: {accountDetails.accountAddress}</li>
-            <li>Account Balance: {accountDetails.accountBalance}</li>
-          </ul>
-        </div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <p class="text-slate-400 hover:text-sky-400">The quick brown fox...</p>
   );
 }
 
