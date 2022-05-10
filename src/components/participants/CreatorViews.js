@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {loadStdlib} from '@reach-sh/stdlib';
-import { InformTimeout, SeeOutcome, ShowBid, IsAuctionOn } from "./ParticipantViews";
+import { InformTimeout, SeeOutcome, ShowBid, IsAuctionOn, AwaitingFirstBidder } from "./ParticipantViews";
 
 const Reach = loadStdlib('ALGO');
 
@@ -50,11 +50,9 @@ const CreatorViews = ({appState, isAcutionOnReady, isAuctionOn, deployContract, 
     case "showBid":
       return <ShowBid bid ={args[0]} />; 
     case "isAuctionOn":
-      return (
-        true 
-          ? <IsAuctionOn isAuctionOn={isAuctionOn}/>
-          : <div>Waiting isAuctionReady....</div>
-      )
+      return (<IsAuctionOn isAuctionOn={isAuctionOn}/>)
+    case "awaitingFirstBidder":
+      return (<AwaitingFirstBidder/>)
     default:
       return (
         <div>Waiting Contract...</div>

@@ -5,7 +5,7 @@ const Common =
     { seeOutcome: Fun([UInt, Address], Null),
       showBid: Fun([UInt, Address], Null),
       informTimeout: Fun([], Null),
-      isAuctionOn: Fun([Address], Bool)
+      isAuctionOn: Fun([], Bool)
     };
 
 const handlePayOut = (royalty, price, Creator, Owner) => {
@@ -50,7 +50,7 @@ export const main =
           commit();
 
           each([Creator, Bidder], () => {
-            const isAuctionOn = this === owner ? declassify(interact.isAuctionOn(owner)) : true;
+            const isAuctionOn = this === owner ? declassify(interact.isAuctionOn()) : true;
           });
 
           Anybody.publish(isAuctionOn).when(owner == this).timeout(false);

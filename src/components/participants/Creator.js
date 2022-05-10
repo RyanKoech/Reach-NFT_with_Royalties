@@ -10,6 +10,9 @@ import CreatorViews from "./CreatorViews";
 const Reach = loadStdlib('ALGO');
 
 
+const fmt = (x) => Reach.formatCurrency(x, 4);
+
+
 export class Creator extends Component {
   static contextType = MainAppContext;
   
@@ -46,6 +49,7 @@ export class Creator extends Component {
   }
 
   async showBid (bid){
+    console.log("Bid: ", fmt(bid))
     this.setState({
       appState: "showBid",
       args: [bid],
@@ -58,9 +62,7 @@ export class Creator extends Component {
     });
   }
 
-  async isAuctionOn (owner){
-    const add = Reach.formatAddress(owner)
-    console.log("This is called. OWner: " , add);
+  async isAuctionOn (){
     const response = await new Promise (res => {
       this.setState({
           appState: "isAuctionOn",
@@ -68,6 +70,9 @@ export class Creator extends Component {
           resIsAuctionOn: res,
       })
     });
+    this.setState({
+      appState: "awaitingFirstBidder"
+    })
     return response;
   }
 

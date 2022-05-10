@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import {loadStdlib} from '@reach-sh/stdlib';
-import { InformTimeout, SeeOutcome, ShowBid, IsAuctionOn } from "./ParticipantViews";
+import { InformTimeout, SeeOutcome, ShowBid, IsAuctionOn, AwaitingFirstBidder } from "./ParticipantViews";
 
 const Reach = loadStdlib('ALGO');
 
-const GetBid = ({price}) =>{
+const fmt = (x) => Reach.formatCurrency(x, 4);
 
+const GetBid = ({price, getBid}) =>{
+
+  const formatPrice = fmt(price);
   const [bid, setBid] = useState(0);
   const handleSubmit = () => {
+    getBid(bid);
   }
   return (
     <div>
-      <p>{price}</p>
-      <label htmlFor="">Bid (Price {price})</label>
-      <input type="number" step={1} min={price} onChange={(e)=>{setBid(e.target.value)}}/>
+      <p>{formatPrice}</p>
+      <label htmlFor="">Bid (Price {formatPrice})</label>
+      <input type="number" step={1} min={formatPrice} onChange={(e)=>{setBid(e.target.value)}}/>
       <button onClick={handleSubmit}>Bid</button> 
     </div>
   )
@@ -35,15 +39,19 @@ const AttachContract = ({attachContract}) => {
   )
 }
 
-const BidderViews = ({appState, args, getBidReady, isAcutionOnReady, isAuctionOn, attachContract}) => {
+const  WaitingOtherBidders = () => {
+  return (
+    <div>Please waiting. Placing bid...</div>
+  )
+}
+
+const BidderViews = ({appState, args, getBidReady, isAcutionOnReady, isAuctionOn, attachContract, getBid}) => {
   console.log("AppView: ", appState);
   switch (appState){
     case "attachContract":
       return (<AttachContract attachContract={attachContract}></AttachContract>)
     case "getBid":
-      return getBidReady
-        ? (<GetBid price={args[0]}></GetBid>)
-        : (<div>Waiting isGetBidReady...</div>)
+      return (<GetBid price={args[0]} getBid={getBid}></GetBid>)
     case "informTimeout":
       return (<InformTimeout />);
     case "seeOutcome":
@@ -51,11 +59,11 @@ const BidderViews = ({appState, args, getBidReady, isAcutionOnReady, isAuctionOn
     case "showBid":
       return <ShowBid bid ={args[0]} />; 
     case "isAuctionOn":
-      return (
-        isAcutionOnReady 
-          ? <IsAuctionOn isAuctionOn={isAuctionOn}/>
-          : <div>Waiting isAuctionReady....</div>
-      )
+      return (<IsAuctionOn isAuctionOn={isAuctionOn}/>)
+    case "awaitingFirstBidder":
+      return (<AwaitingFirstBidder/>)
+    case "awatingOtherBidders":
+      return (<WaitingOtherBidders/>)
     default:
       return (
         <div>Waiting Contract...</div>

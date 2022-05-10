@@ -1,4 +1,9 @@
 import React from "react";
+import { loadStdlib } from "@reach-sh/stdlib";
+
+const Reach = loadStdlib('ALGO');
+
+const fmt = (x) => Reach.formatCurrency(x, 4);
 
 export const InformTimeout = () => {
   return (
@@ -7,14 +12,17 @@ export const InformTimeout = () => {
 }
 
 export const SeeOutcome = ({price, address }) => { 
+  const formatAddress = Reach.formatAddress(address)
+  const formatPrice = fmt(price)
   return (
-    <div>`${address} won the Auction and Paid ${price} ALGO`</div>
+    <div>`{formatAddress} won the Auction and Paid {formatPrice} ALGO`</div>
   )
 }
 
 export const ShowBid = ({bid}) => {
+  const formatBid = fmt(bid);
   return (
-    <div>`A bid of ${bid} has been placed by someone else`</div>
+    <div>`Current leading  bid is {formatBid} ALGO. Waiting for next bidder...`</div>
   )
 }
 
@@ -33,4 +41,10 @@ export const IsAuctionOn = ({isAuctionOn}) => {
       <button onClick={handleReject}>No</button>
     </div>
   );
+}
+
+export const AwaitingFirstBidder = () => {
+  return (
+    <div>Waiting for the First Bidder...</div>
+  )
 }

@@ -8,6 +8,8 @@ import BidderViews from "./BidderViews.js";
 
 const Reach = loadStdlib('ALGO');
 
+const fmt = (x) => Reach.formatCurrency(x, 4);
+
 
 export class Bidder extends Component {
   static contextType = MainAppContext;
@@ -45,6 +47,7 @@ export class Bidder extends Component {
   }
 
   async showBid (bid){
+    console.log("Bid: ", fmt(bid))
     this.setState({
       appState: "showBid",
       args: [bid],
@@ -57,9 +60,7 @@ export class Bidder extends Component {
     });
   }
 
-  async isAuctionOn (owner){
-    const add = Reach.formatAddress(owner)
-    console.log("This is called. OWner: " , add);
+  async isAuctionOn (){
     const response = await new Promise (res => {
       this.setState({
           appState: "isAuctionOn",
@@ -67,6 +68,9 @@ export class Bidder extends Component {
           resIsAuctionOn: res,
       })
     });
+    this.setState({
+      appState: "awaitingFirstBidder"
+    })
     return response;
   }
 
@@ -81,8 +85,14 @@ export class Bidder extends Component {
           args: [price],
           resGetBid: res,
       });
+      console.log("This is what res is: ", res)
     });
-    return bid;
+    console.log(`A bid of ${bid} has been placed.`)
+    const parsedBid = Reach.parseCurrency(bid);
+    this.setState({
+      appState: "awatingOtherBidders"
+    })
+    return parsedBid;
   }
 
   getBidRes(bid){
