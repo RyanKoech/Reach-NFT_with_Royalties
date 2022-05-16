@@ -104,6 +104,9 @@ export class Bidder extends Component {
     const contract = account.contract(Backend, JSON.parse(contractInfo));
     Backend.Bidder(contract, this);
     console.log("Attacher ctc: " ,contract);
+    this.setState({
+      appState: "awatingAuction"
+    })
   }
 
 

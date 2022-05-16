@@ -45,6 +45,12 @@ const  WaitingOtherBidders = () => {
   )
 }
 
+const AwaitingAution = () => {
+  return(
+    <div>Waiting for Auction to Begin....</div>
+  )
+}
+
 const BidderViews = ({appState, args, getBidReady, isAcutionOnReady, isAuctionOn, attachContract, getBid}) => {
   console.log("AppView: ", appState);
   switch (appState){
@@ -64,6 +70,8 @@ const BidderViews = ({appState, args, getBidReady, isAcutionOnReady, isAuctionOn
       return (<AwaitingFirstBidder/>)
     case "awatingOtherBidders":
       return (<WaitingOtherBidders/>)
+    case "awatingAuction":
+      return (<AwaitingAution/>)
     default:
       return (
         <div>Waiting Contract...</div>
