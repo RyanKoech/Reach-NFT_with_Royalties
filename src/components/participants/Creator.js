@@ -88,7 +88,7 @@ export class Creator extends Component {
 
     this.nftTemplate = nftTemplate;
     this.getId = nftId;
-    this.deadline = 500;
+    this.deadline = 100;
 
     console.log(this.nftId, this.nftTemplate)
 
