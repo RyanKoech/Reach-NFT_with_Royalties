@@ -15,7 +15,7 @@ export const SeeOutcome = ({price, address }) => {
   const formatAddress = Reach.formatAddress(address)
   const formatPrice = fmt(price)
   return (
-    <div>`{formatAddress} won the Auction and Paid {formatPrice} ALGO`</div>
+    <div>`{formatAddress} won the Auction and Paid {formatPrice} ALGO. Watchout for the next Auction to begin`</div>
   )
 }
 
