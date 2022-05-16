@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import {CopyToClipboard} from 'react-copy-to-clipboard'
 import {loadStdlib} from '@reach-sh/stdlib';
 import { InformTimeout, SeeOutcome, ShowBid, IsAuctionOn, AwaitingFirstBidder } from "./ParticipantViews";
 
 const Reach = loadStdlib('ALGO');
 
-const CreateNFT = ({deployContract, contractInfo}) => {
+const CreateNFT = ({deployContract}) => {
+
   const [basePrice, setBasePrice] = useState();
   const [royalty, setRoyalty] = useState();
   const [metaData, setMetaData] = useState();
@@ -31,18 +33,35 @@ const CreateNFT = ({deployContract, contractInfo}) => {
         <input type="text" onChange={(e)=>{setMetaData(e.target.value)}}/>
       </form>
       <button onClick={handleSubmit}>Create</button>
-      <pre>
-        {contractInfo}
-      </pre>
     </div>
   )
 }
 
-const CreatorViews = ({appState, isAcutionOnReady, isAuctionOn, deployContract, args}) => {
+const ShowContractInfo = ({contractInfo, setHasShownContractInfo}) => {
+
+  const [copied, setCopied] = useState();
+  const handleCopy = () => { setCopied(true) };
+
+  return(
+    <div>
+      <pre className="mt-4 p-4">
+        {contractInfo}
+      </pre>
+      <CopyToClipboard onCopy={handleCopy} text={contractInfo}>
+          <button variant="primary">
+              {copied ? "Copied" : "Copy to clipboard"}
+          </button>
+      </CopyToClipboard>
+      <div><button onClick={setHasShownContractInfo}>Continue to Begin Auction</button></div>
+    </div>
+  )
+}
+
+const CreatorViews = ({appState, isAuctionOn, deployContract, args, hasShownContractInfo}) => {
   console.log("AppView: ", appState);
   switch (appState){
     case "createNFT":
-      return (<CreateNFT deployContract={deployContract} contractInfo={args[0]}></CreateNFT>)
+      return (<CreateNFT deployContract={deployContract}></CreateNFT>)
     case "informTimeout":
       return (<InformTimeout />);
     case "seeOutcome":
@@ -50,7 +69,9 @@ const CreatorViews = ({appState, isAcutionOnReady, isAuctionOn, deployContract, 
     case "showBid":
       return <ShowBid bid ={args[0]} />; 
     case "isAuctionOn":
-      return (<IsAuctionOn isAuctionOn={isAuctionOn}/>)
+      return ( hasShownContractInfo 
+        ? <IsAuctionOn isAuctionOn={isAuctionOn}/>
+        : <ShowContractInfo contractInfo={args[0]} setHasShownContractInfo={args[1]}/>)
     case "awaitingFirstBidder":
       return (<AwaitingFirstBidder/>)
     default:

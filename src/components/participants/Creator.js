@@ -19,14 +19,17 @@ export class Creator extends Component {
   constructor(props) {
     super(props);
     this.nftTemplate = {};
+    this.contractInfo = {};
     this.nftId = 1;
     this.state = {
         appState: "createNFT",
         args: [""],
-        resIsAuctionOn: null
+        resIsAuctionOn: null,
+        hasShownContractInfo: false
     }
     this.deployContract = this.deployContract.bind(this);
     this.isAuctionOnRes = this.isAuctionOnRes.bind(this);
+    this.setHasShownContractInfo = this.setHasShownContractInfo.bind(this);
   }
 
   componentDidMount() {
@@ -66,7 +69,7 @@ export class Creator extends Component {
     const response = await new Promise (res => {
       this.setState({
           appState: "isAuctionOn",
-          args: [],
+          args: [this.contractInfo, this.setHasShownContractInfo],
           resIsAuctionOn: res,
       })
     });
@@ -99,12 +102,16 @@ export class Creator extends Component {
     Backend.Creator(contract, this);
     const contractInfo = JSON.stringify(await contract.getInfo(), null, 2);
 
-    this.setState({
-      args: [contractInfo]
-    })
+    this.contractInfo = contractInfo;
 
     console.log("Info: ", contractInfo);
 
+  }
+
+  setHasShownContractInfo() {
+    this.setState({
+      hasShownContractInfo: true
+    })
   }
 
   render() {
@@ -112,9 +119,9 @@ export class Creator extends Component {
       <CreatorViews
             appState={this.state.appState}   
             args={this.state.args}               
-            isAuctionOnReady={this.state.resIsAuctionOn !== null}
             isAuctionOn={this.isAuctionOnRes}
             deployContract={this.deployContract}
+            hasShownContractInfo = {this.state.hasShownContractInfo}
         />
     )
   }
