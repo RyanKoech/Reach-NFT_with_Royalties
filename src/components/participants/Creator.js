@@ -100,6 +100,9 @@ export class Creator extends Component {
     console.log(account)
     console.log(contract);
     Backend.Creator(contract, this);
+    this.setState({
+      appState: ""
+    })
     const contractInfo = JSON.stringify(await contract.getInfo(), null, 2);
 
     this.contractInfo = contractInfo;
