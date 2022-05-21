@@ -25,12 +25,10 @@ export const SeeOutcome = ({ price, address }) => {
     <div className="w-full h-screen bg-zinc-100 flex flex-col justify-between">
       <div className="grid md:grid-cols-2 mx-w-[1240px] m-auto">
         <div>
-          `{formatAddress}{" "}
-          <p className=" font-bold">won the Auction and Paid</p> {formatPrice}{" "}
-          <p className=" font-bold">
-            ALGO. Watchout for the next Auction to begin
-          </p>
-          `
+          {formatAddress}{" "}
+          <p className=" font-bold">won the Auction and Paid</p> 
+          {formatPrice}{" "}<span className=" font-bold">ALGO. </span>
+          <p className=" font-bold">Watchout for the next aution to begin...</p>
         </div>
       </div>
     </div>
@@ -43,8 +41,9 @@ export const ShowBid = ({ bid }) => {
     <div className="w-full h-screen bg-zinc-100 flex flex-col justify-between">
       <div className="grid md:grid-cols-2 mx-w-[1240px] m-auto">
         <div>
-          `<p className=" font-bold">Current leading bid is</p> {formatBid}{" "}
-          <p className=" font-bold">ALGO. Waiting for next bidder...</p>`
+          <p className=" font-bold">Current leading bid is</p>
+          {formatBid}{" "}<span className=" font-bold">ALGO. </span>
+          <p className=" font-bold">Waiting for next bidder...</p>
         </div>
       </div>
     </div>

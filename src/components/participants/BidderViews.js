@@ -75,11 +75,27 @@ const AttachContract = ({ attachContract }) => {
 };
 
 const WaitingOtherBidders = () => {
-  return <div>Please waiting. Placing bid...</div>;
+  return (
+    <div className="w-full h-screen bg-zinc-100 flex flex-col justify-between">
+      <div className="grid md:grid-cols-2 mx-w-[1240px] m-auto">
+        <div>
+          <p className=" font-bold">Please waiting. Placing bid...</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const AwaitingAution = () => {
-  return <div>Waiting for Auction to Begin....</div>;
+  return (
+    <div className="w-full h-screen bg-zinc-100 flex flex-col justify-between">
+      <div className="grid md:grid-cols-2 mx-w-[1240px] m-auto">
+        <div>
+          <p className=" font-bold">Waiting for Auction to Begin...</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const BidderViews = ({

@@ -196,7 +196,15 @@ const CreatorViews = ({
     case "awaitingFirstBidder":
       return <AwaitingFirstBidder />;
     default:
-      return <div>Waiting Contract...</div>;
+      return (
+        <div className="w-full h-screen bg-zinc-100 flex flex-col justify-between">
+          <div className="grid md:grid-cols-2 mx-w-[1240px] m-auto">
+            <div>
+              `<p className=" font-bold">Awating Contract...</p>
+            </div>
+          </div>
+        </div>
+      );
   }
 };
 
