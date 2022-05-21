@@ -19,23 +19,53 @@ const GetBid = ({ price, getBid }) => {
     getBid(bid);
   };
   return (
-    <div>
-      <p>{formatPrice}</p>
-      <label htmlFor="">Bid (Price {formatPrice})</label>
-      <input
-        type="number"
-        step={1}
-        min={formatPrice}
-        onChange={(e) => {
-          setBid(e.target.value);
-        }}
-      />
-      <button
-        className="py-3 px-6 sm:w-[50%] my-4 flex bg-cyan-700 text-white font-bold rounded-lg "
-        onClick={handleSubmit}
-      >
-        Bid
-      </button>
+    <div className="antaliased">
+      <div className="flex w-full min-h-screen justify-center items-center">
+        <div className="flex flex-col space-y-6 bg-cyan-700 w-50% maw-w-4xl p-8 rounded-xl shadow-lg teal-white">
+          <div className="flex flex-col justify-between">
+            <div>
+              <h1 className="font-bold text-4xl tracking-wide">
+                Place your bid
+              </h1>
+              <p className="pt-2 text-cyan-100 text-sm">
+                Price to beat, {formatPrice} ALGO
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div className="bg-white rounded-xl shadow-lg p-8 ">
+              <form action="" className="flex flex-col space-y-4">
+                <div>
+                  <label htmlFor="" className="tet-sm">
+                    Bid
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="number"
+                    placeholder={`> ${formatPrice}`}
+                    className="ring-1 ring-gray-500 w-full rounded-md px-4 py-2 outline-none mt-2 focus:ring-2 focus:ring-teal-300"
+                    min={formatPrice}
+                    step="0.001"
+                    onChange={(e) => {
+                      setBid(e.target.value);
+                    }}
+                  />
+                </div>
+              </form>
+              <div>
+                <button
+                  className="inline-blovk self-end bg-cyan-700 text-white font-bold rounded-lg px-6 py-2 uppercase text-sm"
+                  onClick={handleSubmit}
+                >
+                  Place Bid
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -128,7 +158,15 @@ const BidderViews = ({
     case "awatingAuction":
       return <AwaitingAution />;
     default:
-      return <div>Waiting Contract...</div>;
+      return (
+        <div className="w-full h-screen bg-zinc-100 flex flex-col justify-between">
+          <div className="grid md:grid-cols-2 mx-w-[1240px] m-auto">
+            <div>
+              <p className=" font-bold">Awating Contract...</p>
+            </div>
+          </div>
+        </div>
+      );
   }
 };
 
