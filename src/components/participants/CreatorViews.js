@@ -200,7 +200,7 @@ const CreatorViews = ({
         <div className="w-full h-screen bg-zinc-100 flex flex-col justify-between">
           <div className="grid md:grid-cols-2 mx-w-[1240px] m-auto">
             <div>
-              `<p className=" font-bold">Awating Contract...</p>
+              <p className=" font-bold">Awating Contract...</p>
             </div>
           </div>
         </div>
