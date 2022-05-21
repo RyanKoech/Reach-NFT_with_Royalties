@@ -11,6 +11,7 @@ const fmt = (x) => Reach.formatCurrency(x, 4);
 
 const Navbar = () => {
   const {accountBal} = useContext(MainAppContext);
+  const {account} = useContext(MainAppContext);
 
   const {connectWallet} = useContext(MainAppContext)
   return (
@@ -28,9 +29,19 @@ const Navbar = () => {
               </ul>
           </div>
           <div className="hidden md:flex pr-4">
-            <button className=" bg-transparent text-indigo-600 mr-5" onClick={connectWallet}>
-                Connect Wallet 
-              </button>
+            {
+            (account == undefined || account == null) 
+              ? (
+                  <button className=" bg-transparent text-indigo-600 mr-5" onClick={connectWallet}>
+                    Connect Wallet 
+                  </button>
+                ) 
+              : (
+                <div>
+                  <span className=" font-bold">Balance: </span><span>{accountBal}</span><span className=" font-bold"> ALGO</span>
+                </div>
+              )
+            }
               {/* <div className="md:hidden" >
                   {!nav ? <MenuIcon className="w-5"/> : <XIcon className="w-5"/> }
                 <MenuIcon className="w-5"/>
