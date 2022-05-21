@@ -8,8 +8,8 @@ import './App.css';
 
 function App() {
   return (
-    <div className='min-h-screen dark-lightblue-gradient'>
-      <div className="container mx-auto w-11/12 pt-5">
+    <div>
+      <div>
         <MainAppProvider>
           <Navbar></Navbar>
           <MainApp></MainApp>

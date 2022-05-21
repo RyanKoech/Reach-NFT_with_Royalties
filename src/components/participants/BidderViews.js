@@ -18,7 +18,7 @@ const GetBid = ({price, getBid}) =>{
       <p>{formatPrice}</p>
       <label htmlFor="">Bid (Price {formatPrice})</label>
       <input type="number" step={1} min={formatPrice} onChange={(e)=>{setBid(e.target.value)}}/>
-      <button onClick={handleSubmit}>Bid</button> 
+      <button className="py-3 px-6 sm:w-[50%] my-4 flex bg-cyan-700 text-white font-bold rounded-lg " onClick={handleSubmit}>Bid</button> 
     </div>
   )
 }
@@ -31,9 +31,18 @@ const AttachContract = ({attachContract}) => {
    attachContract(contractInfo);
   }
   return (
-    <div>
-      <textarea name="" id="" cols="30" rows="10" onChange={(e)=>{setContractInfo(e.target.value)}}></textarea>
-      <button onClick={handleSubmit}>Attach</button>
+    <div className="antialised bg-zinc-200 ">
+      <div className="flex w-full min-h-screen justify-center items-center">
+        <div className="flex flex-col  md:space-y-6 space-y-6 md:space-x-0  bg-cyan-600 w-full max-w-4xl p-10 mt-6 rounded-xl shadow-lg text-white items-center">
+          <div >
+            <textarea name="" id="" cols="30" rows="10" class="ring-1 ring-gray-300 rounded-md px-4 py-2 mt-2 outline-none text-black" onChange={(e)=>{setContractInfo(e.target.value)}}></textarea>
+            <button className="py-3 px-6 sm:w-[50%] my-4 flex bg-cyan-700 text-white font-bold rounded-lg " onClick={handleSubmit}>Attach</button>
+          </div>
+        
+        </div>
+      
+      </div>
+      
     </div>
     
   )
