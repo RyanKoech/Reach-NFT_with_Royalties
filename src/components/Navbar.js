@@ -13,7 +13,7 @@ const Navbar = () => {
   const {accountBal} = useContext(MainAppContext);
   const {account} = useContext(MainAppContext);
 
-  const {connectWallet} = useContext(MainAppContext)
+  const {connectWallet} = useContext(MainAppContext);
   return (
       <div>
         <div className="w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadow-lg">

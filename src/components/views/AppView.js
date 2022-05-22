@@ -9,7 +9,8 @@ import { ScaleIcon } from "@heroicons/react/solid";
 
 const exports = {};
 
-exports.ConnectWallet = (obj) => {
+exports.ConnectWallet = ({connectWallet}) => {
+
   return (
     <div>
       <div className="w-full h-screen bg-zinc-200 flex flex-col justify-between">
@@ -21,7 +22,7 @@ exports.ConnectWallet = (obj) => {
               {" "}
               Welcome to the NFT Minting and Biding Website
             </p>
-            <button className="py-3 px-6 sm:w-[50%] my-4 flex bg-cyan-700 text-white font-bold rounded-lg ">
+            <button className="py-3 px-6 sm:w-[50%] my-4 flex bg-cyan-700 text-white font-bold rounded-lg " onClick={connectWallet}>
               Get Started
             </button>
           </div>
@@ -88,9 +89,9 @@ exports.Loading = (obj) => {
 };
 
 const AppViews = (props) => {
-  const { deployBidder, deployCreator } = useContext(MainAppContext);
+  const { deployBidder, deployCreator, connectWallet } = useContext(MainAppContext);
 
-  return exports[props.view]({ deployBidder, deployCreator });
+  return exports[props.view]({ deployBidder, deployCreator, connectWallet });
 };
 
 export default AppViews;
