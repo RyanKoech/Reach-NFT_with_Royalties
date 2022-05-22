@@ -4,10 +4,9 @@ import { ALGO_MyAlgoConnect as MyAlgoConnect } from '@reach-sh/stdlib';
 
 
 const reach = loadStdlib('ALGO');
-// reach.setProviderByName("LocalHost")
-// reach.setWalletFallback(reach.walletFallback({
-//   providerEnv: 'TestNet', MyAlgoConnect }));
-const startingBalance = reach.parseCurrency(100);
+// reach.setWalletFallback(reach.walletFallback({ //Uncomment to run on testNet #1/3
+//   providerEnv: 'TestNet', MyAlgoConnect })); //Uncomment to run on testNet #2/3 Use('TestNet'/'MainNet')
+const startingBalance = reach.parseCurrency(100); //Uncomment to run on devnet #1/2
 
 
 
@@ -26,8 +25,8 @@ export const MainAppProvider = ({children}) => {
   async function connectWallet() {
     setAppView("Loading");
     console.log("Loading...")
-    // const acc = await reach.getDefaultAccount();
-    const acc = await reach.newTestAccount(startingBalance);
+    // const acc = await reach.getDefaultAccount(); //Uncomment to run on testNet #3/3
+    const acc = await reach.newTestAccount(startingBalance); //Uncomment to run on devnet #2/2
     const accAdd = reach.formatAddress(acc.getAddress());
     const balAtomic = await reach.balanceOf(acc);
     const bal = reach.formatCurrency(balAtomic, 4);
