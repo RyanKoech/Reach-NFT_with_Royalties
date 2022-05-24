@@ -89,5 +89,5 @@ This project is [MIT](./MIT.md) licensed.
 [stars-url]: https://github.com/RyanKoech/Reach-NFT_with_Royalties/stargazers
 [issues-shield]: https://img.shields.io/github/issues/RyanKoech/Reach-NFT_with_Royalties.svg?style=for-the-badge
 [issues-url]: https://github.com/RyanKoech/Reach-NFT_with_Royalties/issues
-[license-shield]: https://img.shields.io/github/license/RyanKoech/Reach-NFT_with_Royalties.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/RyanKoech/Crypto_Fund.svg?style=for-the-badge
 [license-url]: https://github.com/RyanKoech/Reach-NFT_with_Royalties/blob/master/LICENSE
