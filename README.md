@@ -38,19 +38,19 @@ To get a local copy up and running follow these simple example steps.
 - Has a [MyAlgo](https://wallet.myalgo.com/) Wallet
 
 ### Install
-bash
+```bash
 git clone <this-repo>
 
 npm install
+```
 
 ### Usage
-bash
+```bash
 #Download Reach in src directory (<this-repo>/src)
 curl https://docs.reach.sh/reach -o reach ; chmod +x reach
 
 #Update Reach and Compile Reach code
 ./reach update
-
 ./reach compile
 
 #Start the Reach Devnet
@@ -58,7 +58,7 @@ curl https://docs.reach.sh/reach -o reach ; chmod +x reach
 
 #On Another terminal, in root directroy, Serve the frontend
 npm start
-
+```
 
 ## 🤝 Contributing
 
